@@ -1,5 +1,6 @@
 <script>
-    import "../app.css";
+	import '../app.css';
 </script>
 
-<slot/>
+<svelte:head><title>avDB - An Unofficial Aviation Database</title></svelte:head>
+<slot />
