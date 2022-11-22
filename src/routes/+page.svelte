@@ -45,22 +45,35 @@
 		<!-- Info Section -->
 		{#each fixes as fix}
 			<div
-				class="w-1/2 p-5 mx-auto my-1 drop-shadow border-gray-300 bg-white flex justify-between items-center"
+				class="w-1/2 p-5 mx-auto my-1 drop-shadow border-gray-300 bg-white flex flex-col justify-between items-center"
 			>
 				<div class="flex justify-between items-center w-full">
-					<div class="text-xl font-light italic w-1/3">
-						{fix.kind}
-					</div>
 					<div class="text-2xl font-bold w-1/3">
 						{fix.identifier}
 					</div>
-					<div class="text-xl font-light italic w-1/3">
+					<div class="text-xl font-light italic w-2/3 text-right">
 						{#if fix.name}
-							"{fix.name}"
+							{fix.name}
 						{:else}
-							Submit Name
+							{fix.identifier}
 						{/if}
 					</div>
+				</div>
+				<div class="flex justify-between items-center w-full">
+					<div class="text-sm font-light w-1/3">
+						{fix.kind}
+					</div>
+					{#if fix.city}
+						<div class="text-sm font-light w-2/3 text-right">
+							{fix.city}, {fix.state}
+							{fix.country}
+						</div>
+					{:else}
+						<div class="text-sm font-light w-2/3 text-right">
+							{fix.state}
+							{fix.country} Lat: {fix.latitude}, Lon: {fix.longitude}
+						</div>
+					{/if}
 				</div>
 			</div>
 		{/each}

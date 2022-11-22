@@ -13,10 +13,10 @@ export async function GET(request: RequestEvent) {
 
 	const [rows] = await connection
 		.promise()
-		.query(
-			'SELECT DISTINCT * FROM navaids WHERE identifier = ? OR name = ? OR SOUNDEX(name) = SOUNDEX(?)',
-			[query, query, query]
-		);
+		.query('SELECT DISTINCT * FROM data WHERE identifier = ? OR name LIKE ?', [
+			query,
+			`%${query}%`
+		]);
 
 	return json(rows);
 }
