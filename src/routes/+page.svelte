@@ -22,15 +22,15 @@
 
 <div class="min-h-screen flex flex-col">
 	<!-- Search Section -->
-	<div class="h-5/6 m-0 flex flex-col items-center">
+	<div class="h-5/6 m-0 flex flex-col items-center mx-4">
 		<div class="font-thin text-white text-4xl w-fit m-auto">avDB</div>
 		<div class="font-thin text-white text-sm w-fit m-auto">An unofficial aviation database.</div>
 		<div
-			class="w-1/2 p-5 mx-auto my-5 drop-shadow rounded-xl bg-gray-600 flex justify-between items-center"
+			class="lg:w-1/2 lg:p-5 lg:my-5 w-full mx-auto drop-shadow rounded-xl bg-gray-600 flex justify-between items-center"
 		>
 			<div class="w-full flex">
 				<input
-					class="uppercase block w-full p-4 text-gray-900 border border-gray-300 bg-gray-50 font-mono"
+					class="uppercase block w-full p-4 m-4 lg:m-0 text-gray-900 border border-gray-300 bg-gray-50 font-mono"
 					type="text"
 					placeholder="Enter Search Term... PIGLT, MCI, KCMI"
 					on:keyup={({ target: { value } }) => debounce()}
@@ -45,7 +45,7 @@
 		<!-- Info Section -->
 		{#each fixes as fix}
 			<div
-				class="w-1/2 p-5 mx-auto my-1 drop-shadow border-gray-300 bg-white flex flex-col justify-between items-center"
+				class="lg:w-1/2 w-full my-1 p-4 w-full mx-auto drop-shadow border-gray-300 bg-white flex flex-col justify-between items-center"
 			>
 				<div class="flex justify-between items-center w-full">
 					<div class="text-2xl font-bold w-1/3">
