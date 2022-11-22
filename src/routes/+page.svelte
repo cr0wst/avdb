@@ -3,15 +3,18 @@
 
 	let fixes = [];
 	let timer;
+	let query;
+	let input;
 
-	const debounce = (v) => {
+	const debounce = () => {
 		clearTimeout(timer);
 		timer = setTimeout(() => {
-			search(v);
-		}, 750);
+			query = input;
+			search();
+		}, 250);
 	};
 
-	async function search(query) {
+	async function search() {
 		const response = await axios.get(`/api?query=${query}`);
 		fixes = response.data;
 	}
@@ -20,17 +23,23 @@
 <div class="min-h-screen flex flex-col">
 	<!-- Search Section -->
 	<div class="h-5/6 m-0 flex flex-col items-center">
+		<div class="font-thin text-white text-4xl w-fit m-auto">avDB</div>
+		<div class="font-thin text-white text-sm w-fit m-auto">An unofficial aviation database.</div>
 		<div
 			class="w-1/2 p-5 mx-auto my-5 drop-shadow rounded-xl bg-gray-600 flex justify-between items-center"
 		>
-			<div class="font-thin text-white text-2xl w-fit m-auto">avDB</div>
-			<div class="w-10/12">
+			<div class="w-full flex">
 				<input
-					class="uppercase block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 font-mono"
+					class="uppercase block w-full p-4 text-gray-900 border border-gray-300 bg-gray-50 font-mono"
 					type="text"
 					placeholder="Enter Search Term... PIGLT, MCI, KCMI"
-					on:keyup={({ target: { value } }) => debounce(value)}
+					on:keyup={({ target: { value } }) => debounce()}
+					bind:value={input}
 				/>
+				<button
+					class="btn inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+					on:click={search}>Search</button
+				>
 			</div>
 		</div>
 		<!-- Info Section -->
@@ -56,7 +65,9 @@
 			</div>
 		{/each}
 	</div>
-	<div class="h-1/6 p-5 bg-gray-900 align-text-bottom text-gray-500 text-center mt-auto">
+	<div
+		class="h-1/6 p-5 bg-gray-900 align-text-bottom text-gray-500 text-sm font-thin text-center mt-auto"
+	>
 		This database is for <span class="strong">entertainment purposes only</span>. There is no
 		guarantee provided for the accuracy of the information. Users assume their own risk.<br /><br />
 
