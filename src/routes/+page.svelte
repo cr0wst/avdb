@@ -71,7 +71,7 @@
 					{:else}
 						<div class="text-sm font-light w-2/3 text-right">
 							{fix.state}
-							{fix.country} Lat: {fix.latitude}, Lon: {fix.longitude}
+							{fix.country}
 						</div>
 					{/if}
 				</div>

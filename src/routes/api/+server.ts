@@ -11,12 +11,16 @@ export async function GET(request: RequestEvent) {
 		return json([]);
 	}
 
-	const [rows] = await connection
-		.promise()
-		.query('SELECT DISTINCT * FROM data WHERE identifier = ? OR name LIKE ?', [
-			query,
-			`%${query}%`
-		]);
+	const [rows] = await connection.promise().query(
+		`
+		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, IFNULL(d.name, n.name) as name
+		FROM
+			data d
+			LEFT JOIN names n ON n.identifier = d.identifier
+		WHERE d.identifier = ? or IFNULL(d.name, n.name) like ?
+		`,
+		[query, `%${query}%`]
+	);
 
 	return json(rows);
 }
