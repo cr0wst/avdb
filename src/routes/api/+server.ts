@@ -19,7 +19,7 @@ export async function GET(request: RequestEvent) {
 			LEFT JOIN names n ON n.identifier = d.identifier
 		WHERE d.identifier = ? or IFNULL(d.name, n.name) like ?
 		`,
-		[query, `%${query}%`]
+		[query, `${query}%`]
 	);
 
 	return json(rows);
