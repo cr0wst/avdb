@@ -2,7 +2,8 @@
 	import SearchInput from '../components/SearchInput.svelte';
 	import ResultItem from '../components/ResultItem.svelte';
 	import axios from 'axios';
-	import { debounce } from 'lodash';
+	import lodash from 'lodash';
+	const { debounce } = lodash;
 
 	let results = [];
 
