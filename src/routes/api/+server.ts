@@ -11,24 +11,28 @@ export async function GET(request: RequestEvent) {
 		return json([]);
 	}
 
+	const sql = `
+		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
+		FROM
+			data d
+			LEFT JOIN names n ON n.identifier = d.identifier
+		WHERE d.identifier = ? OR d.icao_identifier = ?
+		UNION
+		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
+		FROM
+			data d
+			LEFT JOIN names n ON n.identifier = d.identifier
+		WHERE IFNULL(d.name, n.name) LIKE ? OR d.identifier LIKE ? OR d.icao_identifier LIKE ?
+		`;
+
+	const params = [query, query, `${query}%`, `${query}%`, `${query}%`];
+
+	console.log(sql);
+	console.log(params);
+
 	// Search for a matching identifier first and then union with a search against the names.
 	// This helps prioritize results since most people searching for an identifier will probably want those first.
-	const [rows] = await connection.promise().query(
-		`
-		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, IFNULL(d.name, n.name) as name
-		FROM
-			data d
-			LEFT JOIN names n ON n.identifier = d.identifier
-		WHERE d.identifier = ?
-		UNION
-		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, IFNULL(d.name, n.name) as name
-		FROM
-			data d
-			LEFT JOIN names n ON n.identifier = d.identifier
-		WHERE IFNULL(d.name, n.name) LIKE ?
-		`,
-		[query, `${query}%`]
-	);
+	const [rows] = await connection.promise().query(sql, params);
 
 	return json(rows);
 }

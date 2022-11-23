@@ -9,6 +9,9 @@
 	class="lg:w-1/2 w-full my-1 p-4 w-full mx-auto drop-shadow border-gray-300 bg-white flex flex-col justify-between items-center">
 	<div class="flex justify-between items-center w-full">
 		<div class="text-2xl font-bold w-1/3">
+			{#if fix.icao_identifier}
+				{fix.icao_identifier}/
+			{/if}
 			{fix.identifier}
 		</div>
 		<div class="text-xl font-light italic w-2/3 text-right">
@@ -26,6 +29,6 @@
 		<Location {fix} />
 	</div>
 	<div class="w-full">
-		<Links class="float-right" {fix} />
+		<Links {fix} />
 	</div>
 </div>
