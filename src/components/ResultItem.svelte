@@ -26,6 +26,6 @@
 		<Location {fix} />
 	</div>
 	<div class="w-full">
-		<Links class="float-left" {fix} />
+		<Links class="float-right" {fix} />
 	</div>
 </div>
