@@ -23,10 +23,14 @@
 </script>
 
 <div class="min-h-screen flex flex-col">
-	<SearchInput onInputChange={debounce(handleSearch, 500)} onButtonClick={handleSearch} />
-	{#each results as fix}
-		<ResultItem {fix} />
-	{/each}
+	<div class="h-5/6 m-0 flex flex-col items-center mx-4">
+		<div class="font-thin text-white text-4xl w-fit m-auto">avDB</div>
+		<div class="font-thin text-white text-sm w-fit m-auto">An unofficial aviation database.</div>
+		<SearchInput onInputChange={debounce(handleSearch, 500)} onButtonClick={handleSearch} />
+		{#each results as fix}
+			<ResultItem {fix} />
+		{/each}
+	</div>
 </div>
 <div
 	class="h-1/6 p-5 bg-gray-900 align-text-bottom text-gray-500 text-sm font-thin text-center mt-auto">
