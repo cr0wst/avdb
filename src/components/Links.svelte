@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { beforeUpdate } from 'svelte';
+
 	export let fix;
 
 	const vartccUrls = {
@@ -27,7 +29,7 @@
 </script>
 
 <div class={`flex w-full ${$$props.class}`}>
-	<div class="float-left w-1/2">
+	<div class="flex w-1/2">
 		{#if fix.artcc}
 			<div
 				class="border mr-2 bg-orange-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold float-left">
@@ -35,15 +37,28 @@
 			</div>
 		{/if}
 	</div>
-	<div class="float-right w-1/2">
+	<div class="flex w-1/2 justify-end">
 		{#if fix.kind == 'AIRPORT'}
+			{#if fix.icao_identifier}
+				<div
+					class="border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+					<a href={`https://metar-taf.com/${fix.icao_identifier}`} target="_blank" rel="noreferrer"
+						>METAR & TAF</a>
+				</div>
+			{:else}
+				<div
+					class="border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+					<a href={`https://metar-taf.com/${fix.identifier}`} target="_blank" rel="noreferrer"
+						>METAR & TAF</a>
+				</div>
+			{/if}
 			<div
-				class="float-right border mr-2 bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+				class="border mr-2 bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
 				<a href={`https://skyvector.com/airport/${fix.identifier}`} target="_blank" rel="noreferrer"
 					>Skyvector</a>
 			</div>
 			<div
-				class="border float-right bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+				class="border bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
 				<a
 					href={`https://flightaware.com/resources/airport/${fix.identifier}`}
 					target="_blank"

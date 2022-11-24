@@ -12,17 +12,18 @@ export async function GET(request: RequestEvent) {
 	}
 
 	const sql = `
-		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
+		SELECT d.id, d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
 		FROM
 			data d
 			LEFT JOIN names n ON n.identifier = d.identifier
 		WHERE d.identifier = ? OR d.icao_identifier = ?
 		UNION
-		SELECT d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
+		SELECT d.id, d.identifier, d.kind, d.city, d.state, d.country, d.latitude, d.longitude, d.icao_identifier, d.artcc, IFNULL(d.name, n.name) as name
 		FROM
 			data d
 			LEFT JOIN names n ON n.identifier = d.identifier
 		WHERE IFNULL(d.name, n.name) LIKE ? OR d.identifier LIKE ? OR d.icao_identifier LIKE ?
+		LIMIT 5
 		`;
 
 	const params = [query, query, `${query}%`, `${query}%`, `${query}%`];

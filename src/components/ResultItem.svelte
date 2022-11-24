@@ -1,6 +1,7 @@
 <script>
 	import Location from './Location.svelte';
 	import Links from './Links.svelte';
+	import ChartImage from './ChartImage.svelte';
 
 	export let fix;
 </script>
@@ -29,6 +30,9 @@
 		<Location {fix} />
 	</div>
 	<div class="w-full">
+		<ChartImage class="w-full h-52" {fix} />
+	</div>
+	<div class="w-full pt-2">
 		<Links {fix} />
 	</div>
 </div>
