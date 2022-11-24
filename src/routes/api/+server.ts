@@ -23,7 +23,7 @@ export async function GET(request: RequestEvent) {
 			data d
 			LEFT JOIN names n ON n.identifier = d.identifier
 		WHERE IFNULL(d.name, n.name) LIKE ? OR d.identifier LIKE ? OR d.icao_identifier LIKE ?
-		LIMIT 100
+		LIMIT 20
 		`;
 
 	const params = [query, query, `${query}%`, `${query}%`, `${query}%`];
