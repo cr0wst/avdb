@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { afterUpdate, beforeUpdate, onDestroy, onMount } from 'svelte';
+	import { afterUpdate } from 'svelte';
 
 	export let fix;
 	let script;
