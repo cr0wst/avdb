@@ -8,7 +8,7 @@
 	const chartMap = {
 		AIRPORT: 301,
 		WP: 304,
-		RP: 302,
+		RP: 304,
 		MW: 301,
 		MR: 301,
 		CN: 301,
