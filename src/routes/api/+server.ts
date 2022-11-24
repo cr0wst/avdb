@@ -28,9 +28,6 @@ export async function GET(request: RequestEvent) {
 
 	const params = [query, query, `${query}%`, `${query}%`, `${query}%`];
 
-	console.log(sql);
-	console.log(params);
-
 	// Search for a matching identifier first and then union with a search against the names.
 	// This helps prioritize results since most people searching for an identifier will probably want those first.
 	const [rows] = await connection.promise().query(sql, params);
