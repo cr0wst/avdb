@@ -28,42 +28,38 @@
 	};
 </script>
 
-<div class={`flex w-full ${$$props.class}`}>
-	<div class="flex w-1/2">
-		{#if fix.artcc}
+<div class={`flex lg:flex-row flex-col w-full ${$$props.class}`}>
+	{#if fix.artcc}
+		<div
+			class="w-full lg:w-auto border mr-2 bg-orange-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold float-left">
+			<a href={vartccUrls[fix.artcc]} target="_blank" rel="noreferrer">{fix.artcc} vARTCC</a>
+		</div>
+	{/if}
+	{#if fix.kind == 'AIRPORT'}
+		{#if fix.icao_identifier}
 			<div
-				class="border mr-2 bg-orange-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold float-left">
-				<a href={vartccUrls[fix.artcc]} target="_blank" rel="noreferrer">{fix.artcc} vARTCC</a>
+				class="w-full lg:w-auto border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+				<a href={`https://metar-taf.com/${fix.icao_identifier}`} target="_blank" rel="noreferrer"
+					>METAR & TAF</a>
+			</div>
+		{:else}
+			<div
+				class="w-full lg:w-auto border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+				<a href={`https://metar-taf.com/${fix.identifier}`} target="_blank" rel="noreferrer"
+					>METAR & TAF</a>
 			</div>
 		{/if}
-	</div>
-	<div class="flex w-1/2 justify-end">
-		{#if fix.kind == 'AIRPORT'}
-			{#if fix.icao_identifier}
-				<div
-					class="border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
-					<a href={`https://metar-taf.com/${fix.icao_identifier}`} target="_blank" rel="noreferrer"
-						>METAR & TAF</a>
-				</div>
-			{:else}
-				<div
-					class="border mr-2 bg-blue-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
-					<a href={`https://metar-taf.com/${fix.identifier}`} target="_blank" rel="noreferrer"
-						>METAR & TAF</a>
-				</div>
-			{/if}
-			<div
-				class="border mr-2 bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
-				<a href={`https://skyvector.com/airport/${fix.identifier}`} target="_blank" rel="noreferrer"
-					>Skyvector</a>
-			</div>
-			<div
-				class="border bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
-				<a
-					href={`https://flightaware.com/resources/airport/${fix.identifier}`}
-					target="_blank"
-					rel="noreferrer">FlightAware</a>
-			</div>
-		{/if}
-	</div>
+		<div
+			class=" w-full lg:w-auto border mr-2 bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+			<a href={`https://skyvector.com/airport/${fix.identifier}`} target="_blank" rel="noreferrer"
+				>Skyvector</a>
+		</div>
+		<div
+			class="w-full lg:w-auto border bg-emerald-600 drop-shadow text-white rounded-xl px-2 py-1 text-sm font-bold">
+			<a
+				href={`https://flightaware.com/resources/airport/${fix.identifier}`}
+				target="_blank"
+				rel="noreferrer">FlightAware</a>
+		</div>
+	{/if}
 </div>
