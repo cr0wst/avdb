@@ -3,14 +3,19 @@
 	import ResultItem from '../components/ResultItem.svelte';
 	import axios from 'axios';
 	import lodash from 'lodash';
-	import Footer from '../components/Footer.svelte';
-	import Header from '../components/Header.svelte';
+	import { onMount } from 'svelte';
+
 	const { debounce } = lodash;
 
 	let results = [];
+	let stats = {
+		airport_count: 0,
+		fixes_count: 0,
+		navaids_count: 0
+	};
 
 	export async function search(query: string) {
-		const response = await axios.get(`/api?query=${query}`);
+		const response = await axios.get(`/api/search?query=${query}`);
 
 		return response.data;
 	}
@@ -22,6 +27,12 @@
 			results = [];
 		}
 	}
+
+	onMount(async () => {
+		const response = await axios.get(`/api/stats`);
+
+		stats = response.data;
+	});
 </script>
 
 <div class="h-5/6 m-0 flex flex-col items-center mx-4">
