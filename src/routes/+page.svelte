@@ -34,7 +34,9 @@
 		<div class="bg-gray-100 p-5 lg:w-2/3">
 			<div class="border-b border-b-gray-300 py-5">
 				<p class="text-xl mb-2">
-					Welcome to <span class="font-light">av</span><span class="font-bold">DB</span>.
+					Welcome to <span class="font-thin">v</span><span class="font-light">av</span><span
+						class="font-bold">DB</span
+					>.
 				</p>
 				<p>
 					This website was created to help quickly look up airports and other identifiers while

@@ -13,8 +13,10 @@
 				><Fa class="text-lg" icon={faTwitter} /></a>
 		</div>
 		<div class="m-auto">
-			This database is for <span class="strong">entertainment purposes only</span>. There is no
-			guarantee provided for the accuracy of the information. Users assume their own risk.
+			<span class="font-thin">v</span><span class="font-light">av</span><span class="font-bold"
+				>DB</span>
+			is for <span class="strong">entertainment purposes only</span>. There is no guarantee provided
+			for the accuracy of the information. Users assume their own risk.
 		</div>
 		<div>
 			Created by <a href="https://smcrow.com" class="strong text-orange-600"
