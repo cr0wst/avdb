@@ -3,6 +3,15 @@
 	import Links from './Links.svelte';
 	import ChartImage from './ChartImage.svelte';
 
+	import relativeTime from 'dayjs/plugin/relativeTime';
+	import customParseFormat from 'dayjs/plugin/customParseFormat';
+	import utc from 'dayjs/plugin/utc';
+	import dayjs from 'dayjs';
+	import lodash from 'lodash';
+	const { startCase, lowerCase } = lodash;
+	dayjs.extend(utc);
+	dayjs.extend(relativeTime);
+	dayjs.extend(customParseFormat);
 	export let fix;
 </script>
 
@@ -17,7 +26,7 @@
 		</div>
 		<div class="text-xl font-light italic lg:w-2/3 w-full text-right">
 			{#if fix.name}
-				{fix.name}
+				{startCase(lowerCase(fix.name))}
 			{:else}
 				{fix.identifier}
 			{/if}
@@ -34,5 +43,13 @@
 	</div>
 	<div class="w-full pt-2">
 		<Links {fix} />
+	</div>
+	<div class="w-full pt-2 text-xs flex">
+		<div class="w-1/2" title={dayjs(fix.created_at).format()}>
+			Added {dayjs(fix.created_at).fromNow()}
+		</div>
+		<div class="w-1/2 text-right" title={dayjs(fix.effective_date).format()}>
+			Effective {dayjs(fix.effective_date).fromNow()}
+		</div>
 	</div>
 </div>
