@@ -12,7 +12,7 @@
 	<input
 		class="uppercase block w-full p-4 lg:m-0 text-gray-900 border border-gray-300 bg-gray-50 font-mono"
 		type="text"
-		placeholder="Enter Search Term... PIGLT, MCI, KCMI"
+		placeholder="Enter Search Term... KCVG CVG JAFAR"
 		on:keyup={({ target: { value } }) => onInputChange(value)}
 		bind:value={query} />
 	<button
