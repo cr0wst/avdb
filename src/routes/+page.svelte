@@ -4,6 +4,10 @@
 	import axios from 'axios';
 	import lodash from 'lodash';
 	import { onMount } from 'svelte';
+	import AirportResultItem from '../components/AirportResultItem.svelte';
+	import FixResultItem from '../components/FixResultItem.svelte';
+	import NavaidResultItem from '../components/NavaidResultItem.svelte';
+	import AircraftResultItem from '../components/AircraftResultItem.svelte';
 
 	const { debounce } = lodash;
 
@@ -39,8 +43,16 @@
 	<div class="w-full lg:w-2/3 my-4">
 		<SearchInput onInputChange={debounce(handleSearch, 500)} onButtonClick={handleSearch} />
 	</div>
-	{#each results as fix}
-		<ResultItem {fix} />
+	{#each results as item}
+		{#if item.classification == 'airports'}
+			<AirportResultItem {item} />
+		{:else if item.classification == 'fixes'}
+			<FixResultItem {item} />
+		{:else if item.classification == 'navaids'}
+			<NavaidResultItem {item} />
+		{:else if item.classification == 'aircrafts'}
+			<AircraftResultItem {item} />
+		{/if}
 	{:else}
 		<div class="bg-gray-100 p-5 lg:w-2/3">
 			<div class="border-b border-b-gray-300 py-5">

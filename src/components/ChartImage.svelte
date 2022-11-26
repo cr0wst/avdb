@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
 
-	export let fix;
+	export let item;
 	let script;
 
 	// 301 = VFR, 302 = World Low, 304 = World High
@@ -29,11 +29,11 @@
 
 	afterUpdate(() => {
 		script = document.createElement('script');
-		document.getElementById('sv_' + fix.id).appendChild(script);
-		script.src = `//skyvector.com/api/lchart?ll=${fix.latitude},${fix.longitude}&amp;s=1&amp;c=sv_${
-			fix.id
-		}&amp;i=${chartMap[fix.kind] || 301}`;
+		document.getElementById('sv_' + item.id).appendChild(script);
+		script.src = `//skyvector.com/api/lchart?ll=${item.latitude},${
+			item.longitude
+		}&amp;s=1&amp;c=sv_${item.id}&amp;i=${chartMap[item.kind] || 301}`;
 	});
 </script>
 
-<div id={'sv_' + fix.id} class={$$props.class} />
+<div id={'sv_' + item.id} class={$$props.class} />

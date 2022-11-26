@@ -1,15 +1,15 @@
 <script lang="ts">
-	export let fix;
+	export let item;
 </script>
 
-{#if fix.city}
+{#if item.city}
 	<div class="text-sm font-light w-2/3 text-right">
-		{fix.city}, {fix.state}
-		{fix.country}
+		{item.city}, {item.item}
+		{item.country}
 	</div>
 {:else}
 	<div class="text-sm font-light w-2/3 text-right">
-		{fix.state}
-		{fix.country}
+		{item.state}
+		{item.country}
 	</div>
 {/if}
