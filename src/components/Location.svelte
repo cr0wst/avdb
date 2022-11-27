@@ -4,7 +4,7 @@
 
 {#if item.city}
 	<div class="text-sm font-light w-2/3 text-right">
-		{item.city}, {item.item}
+		{item.city}, {item.state}
 		{item.country}
 	</div>
 {:else}
