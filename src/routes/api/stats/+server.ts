@@ -24,7 +24,6 @@ export async function GET(request: RequestEvent) {
 		FROM
 			navaids) AS navaids_count`;
 
-	console.log(sql);
 	const [rows] = await connection.promise().query(sql);
 
 	return json((rows as any[])[0]);
