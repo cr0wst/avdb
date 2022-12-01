@@ -6,7 +6,11 @@
 	export let query;
 
 	function handleSearch(query) {
-		goto(`/search/${query.toUpperCase()}`);
+		if (query) {
+			goto(`/search/${encodeURIComponent(query.toUpperCase())}`);
+		} else {
+			goto('/');
+		}
 	}
 </script>
 

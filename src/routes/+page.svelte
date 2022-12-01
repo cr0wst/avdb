@@ -1,20 +1,14 @@
 <script lang="ts">
 	import SearchInput from '../components/SearchInput.svelte';
-	import ResultItem from '../components/ResultItem.svelte';
-	import axios from 'axios';
-	import lodash from 'lodash';
-	import { onMount } from 'svelte';
-	import AirportResultItem from '../components/AirportResultItem.svelte';
-	import FixResultItem from '../components/FixResultItem.svelte';
-	import NavaidResultItem from '../components/NavaidResultItem.svelte';
-	import AircraftResultItem from '../components/AircraftResultItem.svelte';
+
+	export let data;
 </script>
 
 <div class="h-5/6 m-0 flex flex-col items-center mx-4">
 	<div class="w-full lg:w-2/3 my-4">
 		<SearchInput />
 	</div>
-	<div class="bg-gray-100 p-5 lg:w-2/3">
+	<div class="bg-gray-100 p-5 lg:w-2/3 mb-2">
 		<div class="border-b border-b-gray-300 py-5">
 			<p class="text-xl mb-2">
 				Welcome to <span class="font-thin">v</span><span class="font-light">av</span><span
@@ -32,7 +26,7 @@
 				>.
 			</p>
 		</div>
-		<div class="py-5">
+		<div class="py-5 border-b border-b-gray-300">
 			<p class="text-xl mb-2">Other Useful Websites</p>
 			<p>Here are some other websites you might find useful.</p>
 			<div class="flex flex-col lg:flex-row">
@@ -77,6 +71,24 @@
 								>FSE Planner</a>
 						</li>
 					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="py-5">
+			<p class="text-xl mb-2">Statistics</p>
+			<p>This database contains:</p>
+			<div class="flex justify-around font-light">
+				<div>
+					{data.stats.airport_count.toLocaleString()} <span class="font-bold">Airports</span>
+				</div>
+				<div>
+					{data.stats.navaids_count.toLocaleString()} <span class="font-bold">Navigation Aids</span>
+				</div>
+				<div>
+					{data.stats.fixes_count.toLocaleString()} <span class="font-bold">Fixes</span>
+				</div>
+				<div>
+					{data.stats.alias_count.toLocaleString()} <span class="font-bold">Names/Aliases</span>
 				</div>
 			</div>
 		</div>

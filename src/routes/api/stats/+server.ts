@@ -22,7 +22,12 @@ export async function GET(request: RequestEvent) {
 		SELECT
 			count(*)
 		FROM
-			navaids) AS navaids_count`;
+			navaids) AS navaids_count,
+	(
+		SELECT
+			count(*)
+		FROM
+			names) AS alias_count`;
 
 	const [rows] = await connection.promise().query(sql);
 
