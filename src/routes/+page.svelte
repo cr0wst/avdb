@@ -27,11 +27,8 @@
 					class="text-orange-600"
 					href="https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/"
 					>FAA Aeronotical Data</a
-				>.
-			</p>
-			<p>
-				The data contained on this site is designed to help in Virtual Flight Simulation and isn't
-				intended for real-world use.
+				>. The data contained on this site is designed to help in Virtual Flight Simulation and
+				isn't intended for real-world use.
 			</p>
 		</div>
 		<div class="py-5 border-b border-b-gray-300">
