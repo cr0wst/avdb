@@ -19,14 +19,19 @@
 				>.
 			</p>
 			<p>
-				This website was created to help quickly look up airports and other identifiers while flying
-				on the <a class="text-orange-600" href="https://vatsim.net">VATSIM</a>
+				This website was created to help quickly look up airports, VORs, fixes, navigation aids, and
+				other identifiers while flying on the <a class="text-orange-600" href="https://vatsim.net"
+					>VATSIM</a>
 				network. The information is sourced using the
 				<a
 					class="text-orange-600"
 					href="https://www.faa.gov/air_traffic/flight_info/aeronav/aero_data/"
 					>FAA Aeronotical Data</a
 				>.
+			</p>
+			<p>
+				The data contained on this site is designed to help in Virtual Flight Simulation and isn't
+				intended for real-world use.
 			</p>
 		</div>
 		<div class="py-5 border-b border-b-gray-300">
