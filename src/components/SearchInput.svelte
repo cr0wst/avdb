@@ -13,6 +13,7 @@
 <div class="w-full flex">
 	<form class="w-full flex" on:submit|preventDefault={() => handleSearch(query)}>
 		<input
+			autofocus
 			class="uppercase block w-full p-4 lg:m-0 text-gray-900 border border-gray-300 bg-gray-50 font-mono"
 			type="text"
 			placeholder="Enter Search Term... KCVG CVG JAFAR"
