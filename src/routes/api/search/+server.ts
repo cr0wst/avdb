@@ -7,6 +7,8 @@ const connection = mysql.createConnection(DATABASE_URL);
 
 export async function GET(request: RequestEvent) {
 	const query = request.url.searchParams.get('query') || null;
+	const page = Number(request.url.searchParams.get('page')) || 0;
+	const resultsPerPage = Number(request.url.searchParams.get('resultsPerPage')) || 5;
 	if (query === null) {
 		return json([]);
 	}
@@ -23,14 +25,31 @@ export async function GET(request: RequestEvent) {
 			data d
 			LEFT JOIN names n ON n.identifier = d.identifier
 		WHERE IFNULL(d.name, n.name) LIKE ? OR d.identifier LIKE ? OR d.icao_identifier LIKE ?
-		LIMIT 20
+		LIMIT ? OFFSET ?
 		`;
 
-	const params = [query, query, `${query}%`, `${query}%`, `${query}%`];
+	const params = [
+		query,
+		query,
+		`${query}%`,
+		`${query}%`,
+		`${query}%`,
+		resultsPerPage,
+		page * resultsPerPage
+	];
 
 	// Search for a matching identifier first and then union with a search against the names.
 	// This helps prioritize results since most people searching for an identifier will probably want those first.
 	const [rows] = await connection.promise().query(sql, params);
 
-	return json(rows);
+	const totalSql = `
+		SELECT count(*) as total
+		FROM
+			data d
+			LEFT JOIN names n ON n.identifier = d.identifier
+		WHERE d.identifier = ? OR d.icao_identifier = ?
+		OR IFNULL(d.name, n.name) LIKE ? OR d.identifier LIKE ? OR d.icao_identifier LIKE ?`;
+
+	const [total]: any[] = await connection.promise().query(totalSql, params);
+	return json({ data: rows, total: total[0]['total'] });
 }
