@@ -47,6 +47,12 @@
 			</div>
 		</div>
 	{:else}
+		<div class="w-full mx-auto text-center text-white font-light">
+			Showing {data.page * data.resultsPerPage + 1} to {Math.min(
+				data.page * data.resultsPerPage + data.resultsPerPage,
+				data.total
+			)} of {data.total} Results
+		</div>
 		{#each data.results as item}
 			{#if item.classification == 'airports'}
 				<AirportResultItem {item} />
@@ -72,12 +78,6 @@
 						disabled={data.page + 1 >= data.total / data.resultsPerPage}
 						on:click={nextPage}>Next</button>
 				</div>
-			</div>
-			<div class="w-full mx-auto text-center text-white font-light mt-2">
-				Showing {data.page * data.resultsPerPage + 1} to {Math.min(
-					data.page * data.resultsPerPage + data.resultsPerPage,
-					data.total
-				)} of {data.total} Results
 			</div>
 		</div>
 	{/if}

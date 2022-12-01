@@ -4,6 +4,9 @@
 	export let data;
 </script>
 
+<svelte:head>
+	<title>vavDB - The Virtual Aviation Database</title>
+</svelte:head>
 <div class="h-5/6 m-0 flex flex-col items-center mx-4">
 	<div class="w-full lg:w-2/3 my-4">
 		<SearchInput />
