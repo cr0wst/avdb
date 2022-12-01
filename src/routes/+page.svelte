@@ -83,8 +83,6 @@
 			</div>
 		</div>
 		<div class="py-5">
-			<p class="text-xl mb-2">Statistics</p>
-			<p>This database contains:</p>
 			<div class="flex flex-col lg:flex-row lg:justify-around font-light">
 				<div>
 					{data.stats.airport_count.toLocaleString()} <span class="font-bold">Airports</span>
